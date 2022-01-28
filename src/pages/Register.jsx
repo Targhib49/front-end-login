@@ -1,10 +1,6 @@
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-
 import shape from "../assets/images/shape.png";
-
 import { Formik } from "formik";
-
 import CustButton from "../assets/components/CustButton"
 
 export default function Register() {
