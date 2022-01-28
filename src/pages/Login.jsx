@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button"
 import TextField from "@mui/material/TextField";
 
 import {Formik} from 'formik';
@@ -46,11 +45,11 @@ export default function Login() {
                             <div>
                                 <TextField
                                     label="Enter your email"
-                                    style={{margin: "5% 0", width:'80%'}}
+                                    style={{margin: "5% 0", width:'80%', backgroundColor: "#FFFFFF"}}
                                 ></TextField>
                                 <TextField
                                     label="Enter your password"
-                                    style={{width:"80%"}}
+                                    style={{width:"80%", backgroundColor: "#FFFFFF"}}
                                 ></TextField>
                             </div>
                             <div>
