@@ -1,11 +1,10 @@
+import { Formik } from 'formik';
+import { Link } from 'react-router-dom';
 import TextField from "@mui/material/TextField";
-
-import {Formik} from 'formik';
-
 import shape from "../assets/images/shape.png";
 import login from "../assets/images/login.png";
-
 import CustButton from "../assets/components/CustButton";
+
 
 export default function Login() {
     const loginStyle = {
@@ -57,7 +56,11 @@ export default function Login() {
                                 <CustButton text="Sign In"/>
                                 <div style={{display:"flex", justifyContent: "center"}}>
                                     <span style={{margin: "2% 2% 0 0", fontSize: "14px"}}>Belum punya akun?</span>
-                                    <span style={{margin: "2% 2% 0 0", fontSize: "14px", color: "#50C2C9", cursor: "pointer"}}>Register</span>
+                                    <span style={{margin: "2% 2% 0 0", fontSize: "14px", color: "#50C2C9", cursor: "pointer"}}>
+                                        <Link to="/register" style={{color: "#50C2C9", textDecoration: "none"}}>
+                                            Register
+                                        </Link>
+                                    </span>
                                 </div>
                             </div>
                             </div>  

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import shape from "../assets/images/shape.png"
 import teacher from "../assets/images/teacher.png"
 import CustButton from '../assets/components/CustButton';
@@ -29,7 +30,9 @@ export default function Splash() {
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel in neque adipisci modi minima ipsam dolorem qui ipsa omnis?</p>
             </div>
             <div>
-                <CustButton text="Get Started"/>
+                <Link to="/register">
+                    <CustButton text="Get Started"/>
+                </Link>
             </div>
         </div>
     )
