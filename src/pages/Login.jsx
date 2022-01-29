@@ -54,12 +54,9 @@ export default function Login() {
                     }
                     return errors;
                 }}
-                // onSubmit={(values) => {
-                //     console.log(values);
-                // }}
                 onSubmit={async (values) => {
                     await dispatch(loginUser(values));
-                    // await navigate.push('/');
+                    await navigate.push('/');
                 }}
             >
                 {({
