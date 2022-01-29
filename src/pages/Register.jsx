@@ -59,7 +59,7 @@ export default function Register() {
                 // }}
                 onSubmit={async (values) => {
                     await dispatch(addUser(values));
-                    await navigate.push('/login');
+                    await navigate('/login');
                 }}
             >
                 {({

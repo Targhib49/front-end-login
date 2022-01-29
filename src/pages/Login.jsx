@@ -56,7 +56,7 @@ export default function Login() {
                 }}
                 onSubmit={async (values) => {
                     await dispatch(loginUser(values));
-                    await navigate.push('/');
+                    await navigate('/');
                 }}
             >
                 {({
