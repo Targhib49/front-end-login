@@ -1,19 +1,21 @@
 import axios from 'axios';
 
-const apiURL = process.env.API_URL;
+const apiURL = "https://login-pretest.herokuapp.com";
 
 export const loginUser = (values) => {
+    console.log(values);
     return (dispatch) => {
         return axios
                 .post(`${apiURL}/users/login`, values)
                 .then((response) => {
+                    console.log(response);
                     localStorage.setItem('token', response.data.token);
                     localStorage.setItem('refToken', response.data.refreshToken);
                     localStorage.setItem('isLoggedIn', true);
                     dispatch(currentUser(response.data.token));
                 })
                 .catch((error) => {
-                    alert(error.response.data);
+                    console.log(error);
                     throw error;
                 });
     };
@@ -23,14 +25,16 @@ export const currentUser = (token) => {
     return (dispatch) => {
         return axios
                 .get(`${apiURL}/users/id`, {
-                    headers: { Authorization: 'Bearer ${token}' }
+                    headers: { Authorization: `Bearer ${token}` }
                 })
                 .then((response) => {
+                    console.log(response.data.currentUser);
                     dispatch(loginSuccess(response.data.currentUser));
                     dispatch(updateStatus(response.data.isLoggedIn));
-                    dispatch(addToken(response.data.currentUser._id));
+                    dispatch(addToken(response.data.currentUser[0].user_id));
                 })
                 .catch((error) => {
+                    // console.log(error);
                     dispatch(newToken());
                 });
     };

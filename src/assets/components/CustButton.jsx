@@ -11,7 +11,7 @@ export default function CustButton (props) {
     };
     return (
         <>
-            <button style={myStyle} onClick={props.click}>{props.text}</button>
+            <button style={myStyle} onClick={props.click} type={props.type}>{props.text}</button>
         </>
     )
 }
