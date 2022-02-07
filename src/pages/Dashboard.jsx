@@ -1,7 +1,7 @@
 export default function Dashboard () {
     return (
         <div>
-            <p>Ini halaman admin</p>
+            <p>This is admin's dashboard</p>
         </div>
     )
 }

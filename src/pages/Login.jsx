@@ -28,7 +28,7 @@ export default function Login() {
             if (currentUser[0].role == 'admin') {
                 navigate('/dashboard')
             } else if (currentUser[0].role == 'user') {
-                navigate('/homepage')
+                navigate('/verification')
             } else {
                 alert("you're not a users")
             }

@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Homepage from "./pages/Homepage";
 import Dashboard from './pages/Dashboard';
+import OTP from './pages/OTP';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/homepage" element={<Homepage />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/verification" element={<OTP />} />
         </Routes>
       </BrowserRouter>
     </div>

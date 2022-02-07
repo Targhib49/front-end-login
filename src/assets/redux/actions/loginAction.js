@@ -20,6 +20,11 @@ export const loginUser = (values) => {
                     dispatch(updateStatus(response.data.isLoggedIn));
                     axios
                         .put(`${apiURL}/users/addToken/${response.data.currentUser[0].user_id}`, { refreshToken: localStorage.getItem('refToken')})
+                    return response    
+                })
+                .then((response) => {
+                    axios
+                        .put(`${apiURL}/otp/send/${response.data.currentUser[0].user_id}`)
                 })
                 .catch((error) => {
                     console.log(error);
