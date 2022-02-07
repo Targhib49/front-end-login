@@ -7,9 +7,7 @@ export const addUser = (values) => {
         return axios
                 .post(`${apiURL}/users`, values)
                 .then((response) => {
-                    console.log(response);
                     dispatch(addUserSuccess(response.data));
-                    // dispatch(createStorage(response.data.data._id));
                 })
                 .catch((error) => {
                     alert(error.response.data);

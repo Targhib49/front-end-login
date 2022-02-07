@@ -35,7 +35,8 @@ export default function Register() {
                     fullname: '',
                     role: 'user',
                     email: '',
-                    password: ''
+                    password: '',
+                    confirmPassword: ''
                 }}
                 validate={(values) => {
                     const errors = {};
@@ -54,18 +55,22 @@ export default function Register() {
                     }
                     return errors;
                 }}
-                // onSubmit={(values) => {
-                //     console.log(values);
-                // }}
                 onSubmit={async (values) => {
-                    await dispatch(addUser(values));
-                    await navigate('/login');
+                    if (values.password != values.confirmPassword) {
+                        alert("password yang dimasukkan tidak sama")
+                    } else if (values.password === values.confirmPassword) {
+                        const newValues = {fullname: values.fullname, role: values.role, email: values.email, password: values.password}
+                        await dispatch(addUser(newValues));
+                        alert("Registrasi berhasil");
+                        navigate('/login');
+                    }
                 }}
             >
                 {({
                     handleChange,
                     handleSubmit,
                     values,
+                    errors
                 }) =>{
                     return(
                         <form onSubmit={handleSubmit}>
@@ -78,6 +83,9 @@ export default function Register() {
                                         onChange={handleChange}
                                         values={values.fullname}
                                     ></TextField>
+                                    {errors.fullname ?(
+                                        <div style={{fontSize:'15px', textAlign:'left', color: 'red', marginBottom: '5px'}}>*{errors.fullname}</div>
+                                    ):null}
                                     <TextField
                                         label="Enter your email"
                                         id="email"
@@ -85,15 +93,27 @@ export default function Register() {
                                         onChange={handleChange}
                                         values={values.email}
                                     ></TextField>
+                                    {errors.email ?(
+                                        <div style={{fontSize:'15px', textAlign:'left', color: 'red', marginBottom: '5px'}}>*{errors.email}</div>
+                                    ):null}
                                     <TextField
                                         label="Enter password"
                                         id="password"
+                                        type="password"
                                         name="password"
                                         onChange={handleChange}
                                         values={values.password}
                                     ></TextField>
+                                    {errors.password ?(
+                                        <div style={{fontSize:'15px', textAlign:'left', color: 'red', marginBottom: '5px'}}>*{errors.password}</div>
+                                    ):null}
                                     <TextField
                                         label="Confirm password"
+                                        id="confirmPassword"
+                                        type="password"
+                                        name="confirmPassword"
+                                        onChange={handleChange}
+                                        values={values.confirmPassword}
                                     ></TextField>
                                 </div>
                                 <div>

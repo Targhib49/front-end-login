@@ -27,7 +27,7 @@ export default function Login() {
         if (isLoggedIn === true){
             if (currentUser[0].role == 'admin') {
                 navigate('/dashboard')
-            } else if (currentUser[0].role == 'users') {
+            } else if (currentUser[0].role == 'user') {
                 navigate('/homepage')
             } else {
                 alert("you're not a users")
@@ -71,29 +71,14 @@ export default function Login() {
                 }}
                 onSubmit={async (values) => {
                     await dispatch(loginUser(values));
-
-                    // const status = await 
-                    // await console.log(currentUser);
-                    // if (isLoggedIn) {
-                    //     console.log(currentUser);
-                    //     console.log("test");
-                    // }
-                    // 
-                    // if (currentUser) {
-                    //     if (currentUser[0].role == 'admin') {
-                    //         navigate('/dashboard')
-                    //     } else if (currentUser[0].role == 'users') {
-                    //         navigate('/homepage')
-                    //     } else {
-                    //         alert("you're not a users")
-                    //     }
-                    // }  
                 }}
             >
                 {({
                     handleChange,
                     handleSubmit,
-                    values
+                    values,
+                    errors,
+                    touched
                 }) =>{
                     return(
                         <form onSubmit={handleSubmit}>
@@ -107,7 +92,7 @@ export default function Login() {
                                     name="email"
                                     onChange={handleChange}
                                     values={values.email}
-                                ></TextField>
+                                />
                                 <TextField
                                     label="Enter your password"
                                     style={{width:"80%", backgroundColor: "#FFFFFF"}}
