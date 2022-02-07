@@ -23,8 +23,11 @@ export const loginUser = (values) => {
                     return response    
                 })
                 .then((response) => {
-                    axios
+                    return axios
                         .put(`${apiURL}/otp/send/${response.data.currentUser[0].user_id}`)
+                })
+                .then((response) => {
+                    dispatch(updateOTP(response.data.url));
                 })
                 .catch((error) => {
                     console.log(error);
@@ -68,3 +71,12 @@ export const updateStatus = (data) => {
         }
     };
 };
+
+export const updateOTP = (data) => {
+    return {
+        type: 'GET_OTP',
+        payload: {
+            data
+        }
+    }
+}

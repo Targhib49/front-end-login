@@ -56,7 +56,7 @@ export default function Register() {
                     return errors;
                 }}
                 onSubmit={async (values) => {
-                    if (values.password != values.confirmPassword) {
+                    if (values.password !== values.confirmPassword) {
                         alert("password yang dimasukkan tidak sama")
                     } else if (values.password === values.confirmPassword) {
                         const newValues = {fullname: values.fullname, role: values.role, email: values.email, password: values.password}
