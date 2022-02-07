@@ -10,7 +10,7 @@ export const sendOTP = (values) => {
                     alert(response.data.message);
                 })
                 .catch((error) => {
-                    alert(error);
+                    alert("OTP not match");
                     throw error;
                 })
     }

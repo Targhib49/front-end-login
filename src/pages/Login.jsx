@@ -22,7 +22,7 @@ export default function Login() {
     const navigate = useNavigate();
     const currentUser = useSelector((state) => state.currentUser);
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
-
+    
     useEffect(() => {
         if (isLoggedIn === true){
             if (currentUser[0].role === 'admin') {
@@ -33,7 +33,7 @@ export default function Login() {
                 alert("you're not a users")
             }
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, currentUser, navigate]);
 
     return(
         <div className="loginContainer" style={loginStyle}>
@@ -121,60 +121,6 @@ export default function Login() {
                     )
                 }}
             </Formik>
-            {/* <Formik
-                initialValues={{
-                    email: '',
-                    password: ''
-                }}
-                validate={(values) => {
-                    const errors = {};
-                    if (!values.email) {
-                        errors.email = 'Required';
-                    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-                        errors.email = 'Invalid email address';
-                    }
-
-                    if (!values.password) {
-                        errors.password = 'Required';
-                    }
-
-                    return errors;
-                }}
-            > {({handleChange, handleSubmit, values, isSubmitting, errors, touched}) =>{
-                return(
-                    <form>
-                        <TextField
-                            variant="outlined"
-                            margin="dense"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            // onChange={handleChange}
-                            values={values.email}
-                            size="small"
-                        />
-                        <TextField
-                            variant="outlined"
-                            margin="dense"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            // onChange={handleChange}
-                            values={values.password}
-                            size="small"
-						/>
-                    </form>
-                )
-            }}
-            
-            </Formik> */}
 
         </div>
     )

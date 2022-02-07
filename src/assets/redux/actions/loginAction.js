@@ -30,6 +30,7 @@ export const loginUser = (values) => {
                     dispatch(updateOTP(response.data.url));
                 })
                 .catch((error) => {
+                    alert("Email and password not match")
                     console.log(error);
                     throw error;
                 });

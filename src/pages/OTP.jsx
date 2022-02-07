@@ -16,7 +16,7 @@ export default function Homepage () {
         <div>
             <p>Click this link to get OTP</p>
             {otp !== "" ? (
-                <a href={otp} target="_blank">OTP LINK</a>
+                <a href={otp} target="_blank" rel="noopener noreferrer">OTP LINK</a>
             ):null}
             <Formik
                 initialValues={{
