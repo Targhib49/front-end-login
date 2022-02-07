@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import TextField from "@mui/material/TextField";
 import shape from "../assets/images/shape.png";
 import login from "../assets/images/login.png";
@@ -19,6 +21,19 @@ export default function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const currentUser = useSelector((state) => state.currentUser);
+    const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
+    useEffect(() => {
+        if (isLoggedIn === true){
+            if (currentUser[0].role == 'admin') {
+                navigate('/dashboard')
+            } else if (currentUser[0].role == 'users') {
+                navigate('/homepage')
+            } else {
+                alert("you're not a users")
+            }
+        }
+    }, [isLoggedIn]);
 
     return(
         <div className="loginContainer" style={loginStyle}>
@@ -56,7 +71,23 @@ export default function Login() {
                 }}
                 onSubmit={async (values) => {
                     await dispatch(loginUser(values));
-                    await navigate('/');
+
+                    // const status = await 
+                    // await console.log(currentUser);
+                    // if (isLoggedIn) {
+                    //     console.log(currentUser);
+                    //     console.log("test");
+                    // }
+                    // 
+                    // if (currentUser) {
+                    //     if (currentUser[0].role == 'admin') {
+                    //         navigate('/dashboard')
+                    //     } else if (currentUser[0].role == 'users') {
+                    //         navigate('/homepage')
+                    //     } else {
+                    //         alert("you're not a users")
+                    //     }
+                    // }  
                 }}
             >
                 {({
@@ -82,6 +113,7 @@ export default function Login() {
                                     style={{width:"80%", backgroundColor: "#FFFFFF"}}
                                     required
                                     id="password"
+                                    type="password"
                                     name="password"
                                     onChange={handleChange}
                                     values={values.email}

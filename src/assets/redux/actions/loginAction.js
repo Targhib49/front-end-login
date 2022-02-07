@@ -3,17 +3,32 @@ import axios from 'axios';
 const apiURL = "https://login-pretest.herokuapp.com";
 
 export const loginUser = (values) => {
-    console.log(values);
     return (dispatch) => {
         return axios
                 .post(`${apiURL}/users/login`, values)
                 .then((response) => {
-                    console.log(response);
                     localStorage.setItem('token', response.data.token);
                     localStorage.setItem('refToken', response.data.refreshToken);
                     localStorage.setItem('isLoggedIn', true);
-                    dispatch(currentUser(response.data.token));
+                    console.log('that');
+                    return axios
+                            .get(`${apiURL}/users/id`, {
+                                headers: { Authorization: `Bearer ${response.data.token}` }
+                            })
                 })
+                .then((response) => {
+                    dispatch(loginSuccess(response.data.currentUser));
+                    dispatch(updateStatus(response.data.isLoggedIn));
+                    axios
+                        .put(`${apiURL}/users/addToken/${response.data.currentUser[0].user_id}`, { refreshToken: localStorage.getItem('refToken')})
+                    // dispatch(addToken(response.data.currentUser[0].user_id));
+                })
+                // .then((response) => {
+                    
+                //     dispatch(currentUser(response.data.token));
+                //     console.log('this');
+                //     return response;
+                // })
                 .catch((error) => {
                     console.log(error);
                     throw error;
@@ -28,13 +43,12 @@ export const currentUser = (token) => {
                     headers: { Authorization: `Bearer ${token}` }
                 })
                 .then((response) => {
-                    console.log(response.data.currentUser);
                     dispatch(loginSuccess(response.data.currentUser));
                     dispatch(updateStatus(response.data.isLoggedIn));
                     dispatch(addToken(response.data.currentUser[0].user_id));
+                    console.log("done");
                 })
                 .catch((error) => {
-                    // console.log(error);
                     dispatch(newToken());
                 });
     };
