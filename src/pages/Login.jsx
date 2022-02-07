@@ -25,9 +25,9 @@ export default function Login() {
 
     useEffect(() => {
         if (isLoggedIn === true){
-            if (currentUser[0].role == 'admin') {
+            if (currentUser[0].role === 'admin') {
                 navigate('/dashboard')
-            } else if (currentUser[0].role == 'user') {
+            } else if (currentUser[0].role === 'user') {
                 navigate('/verification')
             } else {
                 alert("you're not a users")

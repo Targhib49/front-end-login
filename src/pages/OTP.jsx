@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import CustButton from "../assets/components/CustButton";
 import TextField from "@mui/material/TextField";
 
@@ -13,12 +11,6 @@ export default function Homepage () {
     const dispatch = useDispatch();
     const otp = useSelector((state) => state.otp);
     const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     if (otp !== "" ) {
-    //         console.log(otp);
-    //     }
-    // })
 
     return (
         <div>
